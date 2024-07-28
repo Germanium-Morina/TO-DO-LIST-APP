@@ -9,8 +9,13 @@ function Register() {
     password: '',
     confirmPassword: ''
   })
+  const [showPasswords, setShowPasswords] = useState({
+    password: false,
+    confirmPassword: false,
+  });
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -73,7 +78,12 @@ function Register() {
       navigate('/');
     }
   };
-
+  const togglePasswordVisibility = (field) => {
+    setShowPasswords((prevState) => ({
+      ...prevState,
+      [field]: !prevState[field],
+    }));
+  };
 
   return (
     <div className='flex justify-center items-center w-full h-full mt-14 '>
@@ -117,14 +127,29 @@ function Register() {
             <div className='flex flex-col w-full gap-1'>
               <label htmlFor='password'>Password:</label>
               <div className='flex flex-col'>
+              <div className='flex relative'>
                 <input
-                  type="password"
+                  type={showPasswords.password ? 'text' : 'password'}
                   name="password"
                   value={form.password}
                   onChange={handleChange}
-                  className='border rounded-md p-2 focus:outline-none focus:shadow-gray-100 focus:shadow-sm hover:shadow-gray-100 hover:shadow-sm text-sm'
+                  className='border rounded-md p-2 focus:outline-none focus:shadow-gray-100 focus:shadow-sm hover:shadow-gray-100 hover:shadow-sm text-sm w-full'
                   placeholder='Enter your password'
                 />
+                <button
+                  type="button"
+                  onClick={() => togglePasswordVisibility('password')}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 focus:outline-none"
+                >
+                  {showPasswords.password ? (
+                    <MDBIcon far icon="eye" />
+
+                  ) : (
+                    <MDBIcon far icon="eye-slash" />
+
+                  )}
+                </button>
+                </div>
                 {isSubmitted && errors.password && <span className='pl-1 text-sm text-red-600'>{errors.password}</span>}
               </div>
 
@@ -132,14 +157,29 @@ function Register() {
             <div className='flex flex-col w-full gap-1'>
               <label htmlFor='confirmPassword'>Confirm Password:</label>
               <div className='flex flex-col'>
-                <input
-                  type="password"
+                <div className='flex relative'>
+                  <input
+                  type={showPasswords.confirmPassword ? 'text' : 'password'}
                   name="confirmPassword"
                   value={form.confirmPassword}
                   onChange={handleChange}
-                  className='border rounded-md p-2 focus:outline-none focus:shadow-gray-100 focus:shadow-sm hover:shadow-gray-100 hover:shadow-sm text-sm'
+                  className='border rounded-md p-2 focus:outline-none focus:shadow-gray-100 focus:shadow-sm hover:shadow-gray-100 hover:shadow-sm text-sm w-full'
                   placeholder='Confirm your password'
                 />
+                <button
+                  type="button"
+                  onClick={() => togglePasswordVisibility('confirmPassword')}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 focus:outline-none"
+                >
+                  {showPasswords.confirmPassword ? (
+                    <MDBIcon far icon="eye" />
+
+                  ) : (
+                    <MDBIcon far icon="eye-slash" />
+
+                  )}
+                </button>
+                </div>
                 {isSubmitted && errors.confirmPassword && <span className='pl-1 text-sm text-red-600'>{errors.confirmPassword}</span>}
               </div>
 
