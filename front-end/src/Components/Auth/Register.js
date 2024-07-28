@@ -31,8 +31,7 @@ function Register() {
       case 'fullName':
         return value.trim() ? '' : 'Full Name is required';
       case 'email':
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(value) ? '' : 'Email is not valid';
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Invalid email address';
       case 'password':
         return value.length >= 6 ? '' : 'Password must be at least 6 characters';
       case 'confirmPassword':

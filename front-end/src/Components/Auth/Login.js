@@ -26,8 +26,7 @@ function Login() {
   const validateField = (name, value) => {
     switch (name) {
       case 'email':
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(value) ? '' : 'Email is not valid';
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Invalid email address';
       case 'password':
         return value.length >= 6 ? '' : 'Password must be at least 6 characters';
       default:
