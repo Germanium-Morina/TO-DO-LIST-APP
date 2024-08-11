@@ -1,0 +1,47 @@
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-container {
+    background-color: transparent;
+    width: 6px;
+  }
+
+  .custom-scrollbar .bg-scrollbar-track,
+  .custom-scrollbar .scrollbar-thumb {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, width 0.2s ease-in-out;
+  }
+
+  .custom-scrollbar:hover .bg-scrollbar-track,
+  .custom-scrollbar:hover .scrollbar-thumb {
+    opacity: 1;
+  }
+
+  .scrollbar-container:hover,
+  .scrollbar-container.scrollbar-active {
+    background-color: #E5E7EB;
+    width: 10px;
+
+  }
+
+  .scrollbar-container:hover .scrollbar-thumb,
+  .scrollbar-container.scrollbar-active .scrollbar-thumb {
+    background-color: #777;
+  }
+
+  .scrollbar-thumb {
+    background-color: #aaa;
+    height: 30px;
+    top: 0;
+  }
+
+  .scrollbar-thumb:hover,
+  .scrollbar-thumb.scrollbar-active {
+    background-color: #555;
+  } 

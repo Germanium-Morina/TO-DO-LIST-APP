@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Register from './Components/Auth/Register';
 import Login from './Components/Auth/Login'
-import List from './Components/Table/List'
+import TaskTable from './Components/Table/TaskTable'
 import Logout from './Components/Auth/Logout'
 import { MDBIcon } from 'mdb-react-ui-kit';
 
@@ -27,7 +27,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/list" element={<List />} />
+          <Route path="/taskTable" element={<TaskTable />} />
         </Routes>
 
       </div>

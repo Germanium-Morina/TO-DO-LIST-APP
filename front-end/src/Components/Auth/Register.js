@@ -87,14 +87,14 @@ function Register() {
 
   return (
     <div className='flex justify-center items-center w-full h-full mt-14 '>
-      <div className='flex flex-col bg-white md:pl-6 md:pr-6 pl-3 pr-4 pt-4 rounded-lg xl:w-2/5 lg:w-2/4 md:w-3/5 sm:w-3/4 mobile:w-4/5 w-full shadow-gray-200 shadow-lg ml-3 mr-3 mb-6'>
-        <div className='flex justify-start items-center gap-2 mb-4 border-b-2 pb-4'>
+      <div className='flex flex-col bg-white rounded-lg xl:w-2/5 lg:w-2/4 md:w-3/5 sm:w-3/4 mobile:w-4/5 w-full shadow-gray-200 shadow-lg ml-3 mr-3 mb-6'>
+        <div className='flex justify-start items-center gap-2 mb-4 border-b-4 pb-4 md:pl-6 md:pr-6 pl-3 pr-4 pt-4'>
           <MDBIcon fas icon="user-plus" size='lg' />
           <h1 className='text-xl m-0'>
             Sign Up
           </h1>
         </div>
-        <form onSubmit={handleSubmit} className='flex flex-col gap-10 md:pl-3 md:pr-3 pl-1 pr-1'>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-10 md:pl-6 md:pr-6 pl-2 pr-2'>
           <div className='flex flex-col gap-3'>
             <div className='flex flex-col w-full gap-1'>
               <label htmlFor='fullName'>Full Name:</label>
