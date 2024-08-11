@@ -4,6 +4,7 @@ import Search from './Search';
 import TableItems from './TableItems';
 import useScrollbar from './useScrollbar';
 import "./style.css"
+import AddModal from '../Modals/AddModal'
 function TaskTable() {
   const items = useMemo(() => [
     { task: 'Home Work', status: 2, dueDate: '5/6/2024, 01:00', action: 'Edit' },
@@ -20,6 +21,7 @@ function TaskTable() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const scrollRef = useRef(null);
 
   const handleInputChange = (e) => {
@@ -33,6 +35,14 @@ function TaskTable() {
   };
 
   useScrollbar(scrollRef);
+
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
+
+  const addTask = (newTask) => {
+    items.push(newTask); 
+    console.log('Task added:', newTask);
+  };
 
   return (
     <div className='w-full h-full flex justify-center items-center mobile:pr-7 mobile:pl-7 pr-3 pl-3'>
@@ -70,11 +80,12 @@ function TaskTable() {
           </div>
         </div>
         <div className="flex flex-row justify-end pt-4 pb-4 pr-5 pl-5 border-t-4">
-        <button type="submit" className='text-base bg-blue-700 text-white pl-3 pr-3 pt-2 pb-2 rounded-lg whitespace-nowrap shadow-blue-200 shadow-md hover:shadow-blue-300 hover:shadow-md hover:bg-blue-800 '>
-          Add New Task
-        </button>
+          <button type="button" onClick={openModal} className='text-base bg-blue-700 text-white pl-3 pr-3 pt-2 pb-2 rounded-lg whitespace-nowrap shadow-blue-200 shadow-md hover:shadow-blue-300 hover:shadow-md hover:bg-blue-800 '>
+            Add New Task
+          </button>
         </div>
       </div>
+      <AddModal show={showModal} handleClose={closeModal} handleSubmit={addTask} />
     </div >
   );
 }
