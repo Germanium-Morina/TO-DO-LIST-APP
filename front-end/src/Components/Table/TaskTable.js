@@ -65,14 +65,14 @@ function TaskTable() {
             <TableItems items={items} searchQuery={searchQuery} setIsTyping={setIsTyping} />
           </div>
 
-          <div className="absolute right-[2px] top-0 h-full w-[8px] transition-all duration-200 ease-in-out z-10 scrollbar-container">
+          <div className="absolute right-0 top-0 h-full transition-all duration-200 ease-in-out z-10 scrollbar-container">
             <div className="scrollbar-thumb absolute right-0 h-full w-full transition-all duration-200 rounded-lg ease-in-out"></div>
           </div>
         </div>
         <div className="flex flex-row justify-end pt-4 pb-4 pr-5 pl-5 border-t-4">
-        <button type="submit" className='text-base bg-blue-700 text-white pl-3 pr-3 pt-2 pb-2 rounded-lg whitespace-nowrap shadow-blue-200 shadow-md hover:shadow-blue-300 hover:shadow-md hover:bg-blue-800 '>
-          Add New Task
-        </button>
+          <button type="submit" className='text-base bg-blue-700 text-white pl-3 pr-3 pt-2 pb-2 rounded-lg whitespace-nowrap shadow-blue-200 shadow-md hover:shadow-blue-300 hover:shadow-md hover:bg-blue-800 '>
+            Add New Task
+          </button>
         </div>
       </div>
     </div >

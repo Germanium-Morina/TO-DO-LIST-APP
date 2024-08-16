@@ -9,7 +9,13 @@
 
   .scrollbar-container {
     background-color: transparent;
-    width: 6px;
+    width: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    pointer-events: auto; /* Ensure the container can still be interacted with */
+    transition: background-color 0.2s ease-in-out, width 0.2s ease-in-out;
   }
 
   .custom-scrollbar .bg-scrollbar-track,
@@ -36,12 +42,69 @@
   }
 
   .scrollbar-thumb {
-    background-color: #aaa;
-    height: 30px;
+    background-color: #aaaaaac5;
+    width: 60%;
+    position: absolute;
     top: 0;
+    left: 20%;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out, width 0.2s ease-in-out, left 0.2s ease-in-out;
+    pointer-events: auto;
   }
 
   .scrollbar-thumb:hover,
   .scrollbar-thumb.scrollbar-active {
     background-color: #555;
   } 
+
+  /* Make the thumb expand to the full width of the track on hover */
+.scrollbar-thumb:hover,
+.scrollbar-container:hover .scrollbar-thumb,
+.scrollbar-active .scrollbar-thumb {
+  width: 100%;
+  left: 0; /* Align the thumb with the track when hovered */
+  background-color: #777777d3;
+}
+
+/* Custom scrollbar visibility and interaction */
+.custom-scrollbar .scrollbar-thumb,
+.custom-scrollbar .scrollbar-container {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.custom-scrollbar:hover .scrollbar-thumb,
+.custom-scrollbar:hover .scrollbar-container,
+.scrollbar-active .scrollbar-thumb,
+.scrollbar-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scrollbar-container.scrollbar-active,
+.custom-scrollbar:hover .scrollbar-container {
+  opacity: 1;
+}
+.scrollbar-container:hover,
+.scrollbar-active {
+  background-color: #e6e7e9;
+  opacity: 1;
+}
+
+.scrollbar-container.scrollbar-active {
+  background-color: #E5E7EB;
+  opacity: 1;
+}
+.scrollbar-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 10px;
+  pointer-events: none; /* Allow scroll events to pass through */
+}
+/* When hovering over the overlay, enable pointer events */
+.scrollbar-overlay:hover {
+  pointer-events: auto; /* Allow interaction with the scrollbar */
+  background-color: transparent; /* Ensure transparency over the scrollbar */
+}
