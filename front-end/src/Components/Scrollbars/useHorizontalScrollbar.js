@@ -1,5 +1,3 @@
-// src/Components/Table/useHorizontalScrollbar.js
-
 import { useEffect, useState } from 'react';
 
 function useHorizontalScrollbar(ref) {

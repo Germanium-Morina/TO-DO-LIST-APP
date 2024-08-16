@@ -2,7 +2,7 @@ import { useState, useMemo, useRef } from 'react';
 import { MDBIcon } from "mdb-react-ui-kit";
 import Search from './Search';
 import TableItems from './TableItems';
-import useVerticalScrollbar from '../Scrollbars/useVerticalScrollbar';  // Import vertical scrollbar hook
+import useVerticalScrollbar from '../Scrollbars/useVerticalScrollbar';
 import useHorizontalScrollbar from '../Scrollbars/useHorizontalScrollbar';
 import "./style.css"
 function TaskTable() {
@@ -55,7 +55,7 @@ function TaskTable() {
         </div>
         <div className="relative overflow-hidden custom-scrollbar pl-4 pr-4 pt-5">
           <div ref={scrollRef} className="max-h-[calc(85vh-250px)] overflow-y-scroll overflow-x-scroll relative hide-scrollbar">
-            <div className="flex mb-3 border-b-2 min-w-[1000px]"> {/* Ensure minimum width */}
+            <div className="flex mb-3 border-b-2 min-w-[1000px]">
               <ul className="flex w-full text-lg pb-3 m-0 p-0">
                 <li className="flex-1 text-center">No.</li>
                 <li className="flex-3 text-left">Task</li>

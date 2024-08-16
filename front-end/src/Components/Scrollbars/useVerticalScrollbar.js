@@ -1,5 +1,3 @@
-// src/Components/Table/useVerticalScrollbar.js
-
 import { useEffect, useState } from 'react';
 
 function useVerticalScrollbar(ref) {
@@ -20,7 +18,6 @@ function useVerticalScrollbar(ref) {
     const handleScroll = () => {
       const { scrollHeight, clientHeight, scrollTop } = element;
       
-      // Calculate thumb height and position
       const thumbHeight = Math.max((clientHeight / scrollHeight) * clientHeight, 30); // Minimum thumb height 30px
       thumb.style.height = `${thumbHeight}px`;
 

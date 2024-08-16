@@ -14,7 +14,7 @@
   top: 0;
   right: 0;
   height: 100%;
-  pointer-events: auto; /* Ensure the container can still be interacted with */
+  pointer-events: auto; 
   transition: background-color 0.2s ease-in-out, width 0.2s ease-in-out;
 }
 
@@ -57,16 +57,14 @@
   background-color: #555;
 } 
 
-/* Make the thumb expand to the full width of the track on hover */
 .scrollbar-thumb:hover,
 .scrollbar-container:hover .scrollbar-thumb,
 .scrollbar-active .scrollbar-thumb {
 width: 100%;
-left: 0; /* Align the thumb with the track when hovered */
+left: 0; 
 background-color: #777777a1;
 }
 
-/* Custom scrollbar visibility and interaction */
 .custom-scrollbar .scrollbar-thumb,
 .custom-scrollbar .scrollbar-container {
 opacity: 0;
@@ -101,12 +99,12 @@ top: 0;
 right: 0;
 height: 100%;
 width: 10px;
-pointer-events: none; /* Allow scroll events to pass through */
+pointer-events: none; 
 }
-/* When hovering over the overlay, enable pointer events */
+
 .scrollbar-overlay:hover {
-pointer-events: auto; /* Allow interaction with the scrollbar */
-background-color: transparent; /* Ensure transparency over the scrollbar */
+pointer-events: auto; 
+background-color: transparent; 
 }
 
 .horizontal-scrollbar-container {
@@ -118,11 +116,10 @@ background-color: transparent; /* Ensure transparency over the scrollbar */
   width: 100%;
   pointer-events: auto;
   transition: background-color 0.2s ease-in-out, height 0.2s ease-in-out;
-  opacity: 0; /* Initially hidden */
-  visibility: hidden; /* Initially not visible */
+  opacity: 0; 
+  visibility: hidden; 
 }
 
-/* Horizontal scrollbar thumb */
 .horizontal-scrollbar-thumb {
   background-color: #aaaaaaad;
   height: 60%;
@@ -134,18 +131,16 @@ background-color: transparent; /* Ensure transparency over the scrollbar */
   pointer-events: auto;
 }
 
-/* Show scrollbar when screen width is 1000px or less */
 @media (max-width: 1000px) {
   .horizontal-scrollbar-container {
-    opacity: 1; /* Make scrollbar visible */
-    visibility: visible; /* Ensure it's visible */
+    opacity: 1; 
+    visibility: visible; 
   }
 
   .horizontal-scrollbar-thumb {
     height: 60%;
   }
 
-  /* Hover and active states for horizontal scrollbar */
   .horizontal-scrollbar-container:hover,
   .horizontal-scrollbar-container.scrollbar-active {
     background-color: #d2d2d3ad;
