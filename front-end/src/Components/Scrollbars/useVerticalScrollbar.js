@@ -1,6 +1,8 @@
+// src/Components/Table/useVerticalScrollbar.js
+
 import { useEffect, useState } from 'react';
 
-function useScrollbar(ref) {
+function useVerticalScrollbar(ref) {
   const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
@@ -137,4 +139,4 @@ function useScrollbar(ref) {
   return { isDragging };
 }
 
-export default useScrollbar;
+export default useVerticalScrollbar;
