@@ -5,27 +5,21 @@ import "./EditModal.css"
 export default function EditModal({ show, handleClose, handleSubmit, task }) {
   const parseDueDate = (dueDate) => {
     if (!dueDate) return '';
-
+  
     // Split the dueDate string into date and time components
     const [date, time] = dueDate.split(', ');
-
+  
     if (!date || !time) return ''; // Early return if date or time is missing
-
+  
     // Format the date as YYYY-MM-DD
     const [month, day, year] = date.split('/');
-
     if (!month || !day || !year) return ''; // Early return if date components are missing
-
+  
     const formattedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-
-    // Since time is already in 24-hour format, we don't need any conversion
+  
     // Combine the date and time for the datetime-local input
-    return `${formattedDate}, ${time}`;
+    return `${formattedDate}T${time}`;
   };
-
-
-
-
 
   const [form, setForm] = useState({
     task: task?.task || '',
