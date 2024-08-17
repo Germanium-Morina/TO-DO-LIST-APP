@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { MDBIcon } from 'mdb-react-ui-kit';
 
-function TableItems({ items, searchQuery, setIsTyping, openEditModal }) {
+function TableItems({ items, searchQuery, setIsTyping, openEditModal, openDeleteModal }) {
   const [filteredItems, setFilteredItems] = useState(items);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function TableItems({ items, searchQuery, setIsTyping, openEditModal }) {
       <div className='flex-2 flex items-center justify-center pt-3 pb-3 gap-4'>
         <button><MDBIcon fas icon="check" /></button>
         <button onClick={() => openEditModal(item)}><MDBIcon fas icon="pen" /></button>
-        <button><MDBIcon fas icon="trash-alt" /></button>
+        <button onClick={() => openDeleteModal(item)}><MDBIcon fas icon="trash-alt" /></button>
       </div>
     </li>
   ))}

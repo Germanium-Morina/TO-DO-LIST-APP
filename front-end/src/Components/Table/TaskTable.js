@@ -7,6 +7,7 @@ import useHorizontalScrollbar from '../Scrollbars/useHorizontalScrollbar';
 import "./style.css"
 import AddModal from '../Modals/AddModal'
 import EditModal from '../Modals/EditModal';
+import DeleteModal from '../Modals/DeleteModal';
 function TaskTable() {
   const [items, setItems] = useState([
     { task: 'Home Work', status: 2, dueDate: '05/06/2024, 01:00'},
@@ -25,6 +26,7 @@ function TaskTable() {
   const [isTyping, setIsTyping] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [currentTask, setCurrentTask] = useState(null);
   const scrollRef = useRef(null);
 
@@ -59,6 +61,17 @@ function TaskTable() {
     closeEditModal();
   };
 
+  const openDeleteModal = (task) => {
+    setCurrentTask(task);
+    setShowDeleteModal(true);
+  };
+  const closeDeleteModal = () => setShowDeleteModal(false);
+
+  const deleteTask = () => {
+    setItems(items.filter(item => item !== currentTask));
+    closeDeleteModal();
+  };
+
   return (
     <div className='w-full h-full flex justify-center items-center mobile:pr-7 mobile:pl-7 pr-3 pl-3'>
       <div className='bg-white w-full rounded-lg shadow-gray-200 shadow-lg overflow-hidden'>
@@ -87,7 +100,7 @@ function TaskTable() {
                 <li className="flex-2 text-center">Action</li>
               </ul>
             </div>
-            <TableItems items={items} searchQuery={searchQuery} setIsTyping={setIsTyping} openEditModal={openEditModal} />
+            <TableItems items={items} searchQuery={searchQuery} setIsTyping={setIsTyping} openEditModal={openEditModal} openDeleteModal={openDeleteModal} />
           </div>
 
           {/* Vertical scrollbar */}
@@ -108,6 +121,7 @@ function TaskTable() {
       </div>
       <AddModal show={showAddModal} handleClose={closeAddModal} handleSubmit={addTask} />
       <EditModal show={showEditModal} handleClose={closeEditModal} handleSubmit={updateTask} task={currentTask} />
+      <DeleteModal show={showDeleteModal} handleClose={closeDeleteModal} handleDelete={deleteTask} task={currentTask} />
     </div >
   );
 }
