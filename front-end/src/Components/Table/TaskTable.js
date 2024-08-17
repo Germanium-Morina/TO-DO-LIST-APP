@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { MDBIcon } from "mdb-react-ui-kit";
 import Search from './Search';
 import TableItems from './TableItems';
@@ -6,7 +6,7 @@ import useVerticalScrollbar from '../Scrollbars/useVerticalScrollbar';
 import useHorizontalScrollbar from '../Scrollbars/useHorizontalScrollbar';
 import "./style.css"
 function TaskTable() {
-  const items = useMemo(() => [
+  const [items, setItems] = useState([
     { task: 'Home Work', status: 2, dueDate: '5/6/2024, 01:00', action: 'Edit' },
     { task: 'Grocery Shopping', status: 1, dueDate: '5/7/2024, 10:00', action: 'Delete' },
     { task: 'Call Mom', status: 2, dueDate: '5/8/2024, 16:00', action: 'Edit' },
@@ -17,7 +17,7 @@ function TaskTable() {
     { task: 'Book Reading', status: 1, dueDate: '5/13/2024, 20:00', action: 'Continue' },
     { task: 'Code Review', status: 2, dueDate: '5/14/2024, 11:00', action: 'Review' },
     { task: 'Grocery Shopping', status: 1, dueDate: '5/15/2024, 17:30', action: 'Shop' }
-  ], []);
+  ]);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -31,6 +31,13 @@ function TaskTable() {
   const clearSearch = () => {
     setSearchQuery('');
     setIsTyping(false);
+  };
+
+  const handleStatusChange = (index, newStatus) => {
+    const updatedItems = items.map((item, i) => 
+      i === index ? { ...item, status: parseInt(newStatus, 10) } : item
+    );
+    setItems(updatedItems);
   };
 
   useVerticalScrollbar(scrollRef);
@@ -64,7 +71,7 @@ function TaskTable() {
                 <li className="flex-2 text-center">Action</li>
               </ul>
             </div>
-            <TableItems items={items} searchQuery={searchQuery} setIsTyping={setIsTyping} />
+            <TableItems items={items} searchQuery={searchQuery} setIsTyping={setIsTyping} handleStatusChange={handleStatusChange} />
           </div>
 
           {/* Vertical scrollbar */}
