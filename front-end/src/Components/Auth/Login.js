@@ -120,7 +120,7 @@ function Login() {
           </div>
           <div className='flex flex-row justify-between items-center mb-3 gap-4'>
             <Link to="/register" className='text-sm text-blue-700'>Don't have an account? Sign up</Link>
-            <button type="submit" className='text-base bg-blue-700 text-white pl-3 pr-3 pt-2 pb-2 rounded-lg whitespace-nowrap shadow-blue-200 shadow-md hover:shadow-blue-300 hover:shadow-md hover:bg-blue-800 '>Sign in</button>
+            <button type="submit" className='text-base bg-blue-700 text-white pl-3 pr-3 pt-2 pb-2 rounded-lg whitespace-nowrap shadow-blue-200 shadow-md hover:shadow-blue-300 hover:shadow-md hover:bg-blue-800'>Sign in</button>
           </div>
         </form>
       </div>
