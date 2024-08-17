@@ -9,16 +9,16 @@ import AddModal from '../Modals/AddModal'
 import EditModal from '../Modals/EditModal';
 function TaskTable() {
   const [items, setItems] = useState([
-    { task: 'Home Work', status: 2, dueDate: '5/6/2024, 01:00'},
-    { task: 'Grocery Shopping', status: 1, dueDate: '5/7/2024, 10:00'},
-    { task: 'Call Mom', status: 2, dueDate: '5/8/2024, 16:00'},
-    { task: 'Finish Project', status: 3, dueDate: '5/9/2024, 12:00'},
-    { task: 'Gym Workout', status: 1, dueDate: '5/10/2024, 07:00'},
-    { task: 'Dentist Appointment', status: 3, dueDate: '5/11/2024, 09:30'},
-    { task: 'Team Meeting', status: 2, dueDate: '5/12/2024, 14:00'},
-    { task: 'Book Reading', status: 1, dueDate: '5/13/2024, 20:00'},
-    { task: 'Code Review', status: 2, dueDate: '5/14/2024, 11:00'},
-    { task: 'Grocery Shopping', status: 1, dueDate: '5/15/2024, 17:30'}
+    { task: 'Home Work', status: 2, dueDate: '05/06/2024, 01:00'},
+    { task: 'Grocery Shopping', status: 1, dueDate: '05/07/2024, 10:00'},
+    { task: 'Call Mom', status: 2, dueDate: '05/08/2024, 16:00'},
+    { task: 'Finish Project', status: 3, dueDate: '05/09/2024, 12:00'},
+    { task: 'Gym Workout', status: 1, dueDate: '05/10/2024, 07:00'},
+    { task: 'Dentist Appointment', status: 3, dueDate: '05/11/2024, 09:30'},
+    { task: 'Team Meeting', status: 2, dueDate: '05/12/2024, 14:00'},
+    { task: 'Book Reading', status: 1, dueDate: '05/13/2024, 20:00'},
+    { task: 'Code Review', status: 2, dueDate: '05/14/2024, 11:00'},
+    { task: 'Grocery Shopping', status: 1, dueDate: '05/15/2024, 17:30'}
   ]);
 
   const [searchQuery, setSearchQuery] = useState('');

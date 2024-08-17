@@ -2,23 +2,39 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { MDBIcon } from "mdb-react-ui-kit";
 import "./EditModal.css"
+
 export default function EditModal({ show, handleClose, handleSubmit, task }) {
   const parseDueDate = (dueDate) => {
     if (!dueDate) return '';
-  
+
     // Split the dueDate string into date and time components
     const [date, time] = dueDate.split(', ');
-  
+
     if (!date || !time) return ''; // Early return if date or time is missing
-  
-    // Format the date as YYYY-MM-DD
+
+    // Convert the date from MM/DD/YYYY to YYYY-MM-DD
     const [month, day, year] = date.split('/');
     if (!month || !day || !year) return ''; // Early return if date components are missing
-  
+
     const formattedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-  
+
     // Combine the date and time for the datetime-local input
     return `${formattedDate}T${time}`;
+  };
+
+  const formatDueDateForItemList = (dueDate) => {
+    if (!dueDate) return '';
+
+    // Split the dueDate into date and time
+    const [date, time] = dueDate.split('T');
+
+    if (!date || !time) return '';
+
+    // Convert from YYYY-MM-DD to MM/DD/YYYY
+    const [year, month, day] = date.split('-');
+    const formattedDate = `${month}/${day}/${year}`;
+
+    return `${formattedDate}, ${time}`;
   };
 
   const [form, setForm] = useState({
@@ -83,12 +99,19 @@ export default function EditModal({ show, handleClose, handleSubmit, task }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     const validationErrors = validateForm();
     setErrors(validationErrors);
     setIsSubmitted(true);
 
     if (Object.keys(validationErrors).length === 0) {
-      handleSubmit(form);
+      // Reformat the date before submitting
+      const formattedForm = {
+        ...form,
+        dueDate: formatDueDateForItemList(form.dueDate),
+      };
+
+      handleSubmit(formattedForm);
       handleClose();
     }
   };
@@ -156,22 +179,22 @@ export default function EditModal({ show, handleClose, handleSubmit, task }) {
           </div>
           <div className="flex flex-col">
             <label htmlFor="status" className="block text-gray-500">Status:</label>
-            <div className='relative'>  <select
-              name="status"
-              value={form.status}
-              onChange={handleChange}
-              className="border rounded-md p-2 pr-10 focus:outline-none focus:shadow-gray-100 focus:shadow-sm hover:shadow-gray-100 hover:shadow-sm text-md w-full appearance-none"
-            >
-              <option value="1">Open</option>
-              <option value="2">In Progress</option>
-              <option value="3">Done</option>
-              <option value="4">Canceled</option>
-            </select>
+            <div className='relative'>
+              <select
+                name="status"
+                value={form.status}
+                onChange={handleChange}
+                className="border rounded-md p-2 pr-10 focus:outline-none focus:shadow-gray-100 focus:shadow-sm hover:shadow-gray-100 hover:shadow-sm text-md w-full appearance-none"
+              >
+                <option value="1">Open</option>
+                <option value="2">In Progress</option>
+                <option value="3">Done</option>
+                <option value="4">Canceled</option>
+              </select>
               <div className="absolute inset-y-0 right-0 flex items-center pr-[11px] pointer-events-none">
                 <MDBIcon fas icon="angle-down" />
               </div>
             </div>
-
           </div>
         </form>
         <div className="flex justify-between border-t-4 sm:pl-4 sm:pr-4 pl-2 pr-2 py-4 mt-3">
