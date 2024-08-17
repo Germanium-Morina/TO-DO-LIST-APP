@@ -1,0 +1,19 @@
+/* Add custom styling as needed */
+.select-container {
+  position: relative;
+}
+
+.select-container select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+}
+
+.select-container .icon-container {
+  position: absolute;
+  right: 0.75rem; /* Adjust to position the icon */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Ensures the icon doesn’t block clicks */
+}

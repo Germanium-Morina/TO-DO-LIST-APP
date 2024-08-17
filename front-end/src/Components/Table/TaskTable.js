@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { MDBIcon } from "mdb-react-ui-kit";
 import Search from './Search';
 import TableItems from './TableItems';
@@ -6,23 +6,26 @@ import useVerticalScrollbar from '../Scrollbars/useVerticalScrollbar';
 import useHorizontalScrollbar from '../Scrollbars/useHorizontalScrollbar';
 import "./style.css"
 import AddModal from '../Modals/AddModal'
+import EditModal from '../Modals/EditModal';
 function TaskTable() {
-  const items = useMemo(() => [
-    { task: 'Home Work', status: 2, dueDate: '5/6/2024, 01:00', action: 'Edit' },
-    { task: 'Grocery Shopping', status: 1, dueDate: '5/7/2024, 10:00', action: 'Delete' },
-    { task: 'Call Mom', status: 2, dueDate: '5/8/2024, 16:00', action: 'Edit' },
-    { task: 'Finish Project', status: 3, dueDate: '5/9/2024, 12:00', action: 'Complete' },
-    { task: 'Gym Workout', status: 1, dueDate: '5/10/2024, 07:00', action: 'Start' },
-    { task: 'Dentist Appointment', status: 3, dueDate: '5/11/2024, 09:30', action: 'Reschedule' },
-    { task: 'Team Meeting', status: 2, dueDate: '5/12/2024, 14:00', action: 'Join' },
-    { task: 'Book Reading', status: 1, dueDate: '5/13/2024, 20:00', action: 'Continue' },
-    { task: 'Code Review', status: 2, dueDate: '5/14/2024, 11:00', action: 'Review' },
-    { task: 'Grocery Shopping', status: 1, dueDate: '5/15/2024, 17:30', action: 'Shop' }
-  ], []);
+  const [items, setItems] = useState([
+    { task: 'Home Work', status: 2, dueDate: '5/6/2024, 01:00'},
+    { task: 'Grocery Shopping', status: 1, dueDate: '5/7/2024, 10:00'},
+    { task: 'Call Mom', status: 2, dueDate: '5/8/2024, 16:00'},
+    { task: 'Finish Project', status: 3, dueDate: '5/9/2024, 12:00'},
+    { task: 'Gym Workout', status: 1, dueDate: '5/10/2024, 07:00'},
+    { task: 'Dentist Appointment', status: 3, dueDate: '5/11/2024, 09:30'},
+    { task: 'Team Meeting', status: 2, dueDate: '5/12/2024, 14:00'},
+    { task: 'Book Reading', status: 1, dueDate: '5/13/2024, 20:00'},
+    { task: 'Code Review', status: 2, dueDate: '5/14/2024, 11:00'},
+    { task: 'Grocery Shopping', status: 1, dueDate: '5/15/2024, 17:30'}
+  ]);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [currentTask, setCurrentTask] = useState(null);
   const scrollRef = useRef(null);
 
   const handleInputChange = (e) => {
@@ -37,14 +40,23 @@ function TaskTable() {
 
   useVerticalScrollbar(scrollRef);
   useHorizontalScrollbar(scrollRef);
-  useScrollbar(scrollRef);
 
-  const openModal = () => setShowModal(true);
-  const closeModal = () => setShowModal(false);
+  const openAddModal = () => setShowAddModal(true);
+  const closeAddModal = () => setShowAddModal(false);
+
+  const openEditModal = (task) => {
+    setCurrentTask(task);
+    setShowEditModal(true);
+  };
+  const closeEditModal = () => setShowEditModal(false);
 
   const addTask = (newTask) => {
-    items.push(newTask); 
-    console.log('Task added:', newTask);
+    setItems([...items, newTask]);
+  };
+
+  const updateTask = (updatedTask) => {
+    setItems(items.map(item => item === currentTask ? updatedTask : item));
+    closeEditModal();
   };
 
   return (
@@ -75,7 +87,7 @@ function TaskTable() {
                 <li className="flex-2 text-center">Action</li>
               </ul>
             </div>
-            <TableItems items={items} searchQuery={searchQuery} setIsTyping={setIsTyping} />
+            <TableItems items={items} searchQuery={searchQuery} setIsTyping={setIsTyping} openEditModal={openEditModal} />
           </div>
 
           {/* Vertical scrollbar */}
@@ -89,15 +101,13 @@ function TaskTable() {
           </div>
         </div>
         <div className="flex flex-row justify-end pt-4 pb-4 pr-5 pl-5 border-t-4">
-          <button type="submit" className='text-base bg-blue-700 text-white pl-3 pr-3 pt-2 pb-2 rounded-lg whitespace-nowrap shadow-blue-200 shadow-md hover:shadow-blue-300 hover:shadow-md hover:bg-blue-800 '>
-            Add New Task
-          </button>
-          <button type="button" onClick={openModal} className='text-base bg-blue-700 text-white pl-3 pr-3 pt-2 pb-2 rounded-lg whitespace-nowrap shadow-blue-200 shadow-md hover:shadow-blue-300 hover:shadow-md hover:bg-blue-800 '>
+          <button type="button" onClick={openAddModal} className='text-base bg-blue-700 text-white pl-3 pr-3 pt-2 pb-2 rounded-lg whitespace-nowrap shadow-blue-200 shadow-md hover:shadow-blue-300 hover:shadow-md hover:bg-blue-800 '>
             Add New Task
           </button>
         </div>
       </div>
-      <AddModal show={showModal} handleClose={closeModal} handleSubmit={addTask} />
+      <AddModal show={showAddModal} handleClose={closeAddModal} handleSubmit={addTask} />
+      <EditModal show={showEditModal} handleClose={closeEditModal} handleSubmit={updateTask} task={currentTask} />
     </div >
   );
 }
