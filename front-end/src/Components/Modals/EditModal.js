@@ -111,13 +111,12 @@ export default function EditModal({ show, handleClose, handleSubmit, task }) {
 
   const handleSubmitClick = () => {
     if (formRef.current) {
-      formRef.current.requestSubmit(); // Programmatically submit the form
+      formRef.current.requestSubmit();
     }
   };
 
   useEffect(() => {
     if (isSubmitted) {
-      // Trigger validation when `isSubmitted` changes
       setErrors(validateForm());
     }
   }, [form, isSubmitted, validateForm]);
