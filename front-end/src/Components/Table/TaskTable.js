@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { MDBIcon } from "mdb-react-ui-kit";
 import Search from './Search';
 import TableItems from './TableItems';
@@ -38,6 +39,13 @@ function TaskTable() {
   const clearSearch = () => {
     setSearchQuery('');
     setIsTyping(false);
+  };
+
+  const handleStatusChange = (index, newStatus) => {
+    const updatedItems = items.map((item, i) => 
+      i === index ? { ...item, status: parseInt(newStatus, 10) } : item
+    );
+    setItems(updatedItems);
   };
 
   useVerticalScrollbar(scrollRef);
@@ -101,6 +109,7 @@ function TaskTable() {
               </ul>
             </div>
             <TableItems items={items} searchQuery={searchQuery} setIsTyping={setIsTyping} openEditModal={openEditModal} openDeleteModal={openDeleteModal} />
+            <TableItems items={items} searchQuery={searchQuery} setIsTyping={setIsTyping} handleStatusChange={handleStatusChange} />
           </div>
 
           {/* Vertical scrollbar */}
