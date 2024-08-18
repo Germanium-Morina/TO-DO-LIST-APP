@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-import { useState, useRef } from 'react';
 import { MDBIcon } from "mdb-react-ui-kit";
 import Search from './Search';
 import TableItems from './TableItems';

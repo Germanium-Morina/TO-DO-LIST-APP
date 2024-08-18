@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { MDBIcon } from 'mdb-react-ui-kit';
 
-function TableItems({ items, searchQuery, setIsTyping, openEditModal, openDeleteModal }) {
-function TableItems({ items, searchQuery, setIsTyping, handleStatusChange }) {
+function TableItems({ items, searchQuery, setIsTyping, handleStatusChange, openEditModal, openDeleteModal }) {
   const [filteredItems, setFilteredItems] = useState(items);
 
   useEffect(() => {
