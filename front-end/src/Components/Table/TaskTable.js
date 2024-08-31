@@ -11,16 +11,16 @@ import "./style.css";
 
 function TaskTable() {
   const [items, setItems] = useState([
-    { task: 'Home Work', status: 2, dueDate: '05/06/2024, 01:00'},
-    { task: 'Grocery Shopping', status: 1, dueDate: '05/07/2024, 10:00'},
-    { task: 'Call Mom', status: 2, dueDate: '05/08/2024, 16:00'},
-    { task: 'Finish Project', status: 3, dueDate: '05/09/2024, 12:00'},
-    { task: 'Gym Workout', status: 1, dueDate: '05/10/2024, 07:00'},
-    { task: 'Dentist Appointment', status: 3, dueDate: '05/11/2024, 09:30'},
-    { task: 'Team Meeting', status: 2, dueDate: '05/12/2024, 14:00'},
-    { task: 'Book Reading', status: 1, dueDate: '05/13/2024, 20:00'},
-    { task: 'Code Review', status: 2, dueDate: '05/14/2024, 11:00'},
-    { task: 'Grocery Shopping', status: 1, dueDate: '05/15/2024, 17:30'}
+    { task: "Home Work", status: 2, dueDate: "05/06/2024, 01:00" },
+    { task: "Grocery Shopping", status: 1, dueDate: "05/07/2024, 10:00" },
+    { task: "Call Mom", status: 2, dueDate: "05/08/2024, 16:00" },
+    { task: "Finish Project", status: 3, dueDate: "05/09/2024, 12:00" },
+    { task: "Gym Workout", status: 1, dueDate: "05/10/2024, 07:00" },
+    { task: "Dentist Appointment", status: 3, dueDate: "05/11/2024, 09:30" },
+    { task: "Team Meeting", status: 2, dueDate: "05/12/2024, 14:00" },
+    { task: "Book Reading", status: 1, dueDate: "05/13/2024, 20:00" },
+    { task: "Code Review", status: 2, dueDate: "05/14/2024, 11:00" },
+    { task: "Grocery Shopping", status: 1, dueDate: "05/15/2024, 17:30" },
   ]);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -103,12 +103,6 @@ function TaskTable() {
           <div className="flex flex-row gap-2 items-baseline w-full">
             <MDBIcon fas icon="tasks" size="lg" />
             <h1 className="text-xl m-0 font-medium">Task List</h1>
-    <div className="w-full h-full flex justify-center items-center mobile:pr-7 mobile:pl-7 pr-3 pl-3">
-      <div className="bg-white w-full rounded-lg shadow-gray-200 shadow-lg overflow-hidden">
-        <div className="flex flex-row w-full justify-between border-b-4 pb-3 items-center pt-4 md:pr-4 md:pl-4 pr-3 pl-3">
-          <div className="flex flex-row gap-2 items-baseline w-full">
-            <MDBIcon fas icon="tasks" size="lg" />
-            <h1 className="text-xl m-0 font-medium">Task List</h1>
           </div>
           <div className="flex w-full items-center justify-end">
             <Search
@@ -121,7 +115,7 @@ function TaskTable() {
         </div>
         <div className="relative overflow-hidden custom-scrollbar flex flex-row">
           {/* Status Navbar */}
-          <div className="w-[10%] border-r-2 flex-none flex flex-col px-2 justify-center items-center ">
+          <div className="w-[10%] border-r-2 flex-none flex flex-col px-2 justify-center items-center">
             {statusTabs.map((tab, index) => (
               <button
                 key={tab.status}
@@ -138,7 +132,7 @@ function TaskTable() {
 
           <div
             ref={scrollRef}
-            className="max-h-[calc(85 vh-250px)] overflow-y-scroll overflow-x-scroll relative hide-scrollbar w-[90%] pl-4 pr-4">
+            className="max-h-[calc(85vh-250px)] overflow-y-scroll overflow-x-scroll relative hide-scrollbar w-[90%] pl-4 pr-4">
             <div className="flex border-b-2 min-w-[1000px] py-3">
               <ul className="flex w-full text-lg m-0 p-0">
                 <li className="flex-1 text-center">No.</li>
