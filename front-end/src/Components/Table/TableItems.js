@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { MDBIcon } from 'mdb-react-ui-kit';
 
-function TableItems({ items, searchQuery, setIsTyping, handleStatusChange }) {
+function TableItems({ items, searchQuery, setIsTyping, openEditModal, handleStatusChange }) {
   const [filteredItems, setFilteredItems] = useState(items);
 
   useEffect(() => {
@@ -52,14 +52,15 @@ function TableItems({ items, searchQuery, setIsTyping, handleStatusChange }) {
             <span className='flex-3 text-center pt-3 pb-3'>{item.dueDate}</span>
             <div className='flex-2 flex items-center justify-center pt-3 pb-3 gap-4'>
               <button><MDBIcon fas icon="check" /></button>
-              <button><MDBIcon fas icon="pen" /></button>
+              <button onClick={() => openEditModal(item)}><MDBIcon fas icon="pen" /></button>
               <button><MDBIcon fas icon="trash-alt" /></button>
             </div>
           </li>
         ))}
-      </ul>
-    </div>
+        </ul>
+        </div>
   );
+  
 }
 
 TableItems.propTypes = {
