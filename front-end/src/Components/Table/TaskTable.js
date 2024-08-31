@@ -35,7 +35,6 @@ function TaskTable() {
     setIsTyping(false);
   };
 
-  useScrollbar(scrollRef);
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
