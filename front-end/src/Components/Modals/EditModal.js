@@ -1,46 +1,49 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import PropTypes from "prop-types";
 import { MDBIcon } from "mdb-react-ui-kit";
-import "./EditModal.css"
+import "./EditModal.css";
 
 export default function EditModal({ show, handleClose, handleSubmit, task }) {
   const parseDueDate = (dueDate) => {
-    if (!dueDate) return '';
+    if (!dueDate) return "";
 
     // Split the dueDate string into date and time components
-    const [date, time] = dueDate.split(', ');
+    const [date, time] = dueDate.split(", ");
 
-    if (!date || !time) return ''; // Early return if date or time is missing
+    if (!date || !time) return ""; // Early return if date or time is missing
 
     // Convert the date from MM/DD/YYYY to YYYY-MM-DD
-    const [month, day, year] = date.split('/');
-    if (!month || !day || !year) return ''; // Early return if date components are missing
+    const [month, day, year] = date.split("/");
+    if (!month || !day || !year) return ""; // Early return if date components are missing
 
-    const formattedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    const formattedDate = `${year}-${month.padStart(2, "0")}-${day.padStart(
+      2,
+      "0"
+    )}`;
 
     // Combine the date and time for the datetime-local input
     return `${formattedDate}T${time}`;
   };
 
   const formatDueDateForItemList = (dueDate) => {
-    if (!dueDate) return '';
+    if (!dueDate) return "";
 
     // Split the dueDate into date and time
-    const [date, time] = dueDate.split('T');
+    const [date, time] = dueDate.split("T");
 
-    if (!date || !time) return '';
+    if (!date || !time) return "";
 
     // Convert from YYYY-MM-DD to MM/DD/YYYY
-    const [year, month, day] = date.split('-');
+    const [year, month, day] = date.split("-");
     const formattedDate = `${month}/${day}/${year}`;
 
     return `${formattedDate}, ${time}`;
   };
 
   const [form, setForm] = useState({
-    task: task?.task || '',
+    task: task?.task || "",
     dueDate: parseDueDate(task?.dueDate),
-    status: task?.status || '1',
+    status: task?.status || "1",
   });
 
   useEffect(() => {
@@ -74,19 +77,19 @@ export default function EditModal({ show, handleClose, handleSubmit, task }) {
 
   const validateField = (name, value) => {
     switch (name) {
-      case 'task':
-        return value.trim() ? '' : 'Task is required';
-      case 'dueDate':
-        return value ? '' : 'Due Date is required';
+      case "task":
+        return value.trim() ? "" : "Task is required";
+      case "dueDate":
+        return value ? "" : "Due Date is required";
       default:
-        return '';
+        return "";
     }
   };
 
   const validateForm = useCallback(() => {
     const newErrors = {};
-    newErrors.task = validateField('task', form.task);
-    newErrors.dueDate = validateField('dueDate', form.dueDate);
+    newErrors.task = validateField("task", form.task);
+    newErrors.dueDate = validateField("dueDate", form.dueDate);
 
     for (let key in newErrors) {
       if (!newErrors[key]) {
@@ -124,11 +127,11 @@ export default function EditModal({ show, handleClose, handleSubmit, task }) {
     };
 
     if (show) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [show, handleClose]);
 
@@ -149,43 +152,57 @@ export default function EditModal({ show, handleClose, handleSubmit, task }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div ref={modalRef} className="bg-white rounded-lg w-full max-w-lg m-3">
-        <div className='border-b-4 pt-3 p-3 px-4 flex flex-row justify-start items-center gap-2'>
-          <MDBIcon fas icon="edit" size='lg' />
+        <div className="border-b-4 pt-3 p-3 px-4 flex flex-row justify-start items-center gap-2">
+          <MDBIcon fas icon="edit" size="lg" />
           <h2 className="text-xl m-0">Edit Task</h2>
         </div>
-        <form ref={formRef} onSubmit={onSubmit} className='py-4 sm:pl-4 sm:pr-4 pl-2 pr-2 gap-3 flex flex-col'>
+        <form
+          ref={formRef}
+          onSubmit={onSubmit}
+          className="py-4 sm:pl-4 sm:pr-4 pl-2 pr-2 gap-3 flex flex-col">
           <div className="flex flex-col">
-            <label htmlFor="task" className="block text-gray-500">Task:</label>
+            <label htmlFor="task" className="block text-gray-500">
+              Task:
+            </label>
             <input
               type="text"
               name="task"
               value={form.task}
               onChange={handleChange}
-              className='border rounded-md p-2 focus:outline-none focus:shadow-gray-100 focus:shadow-sm hover:shadow-gray-100 hover:shadow-sm text-md w-full'
+              className="border rounded-md p-2 focus:outline-none focus:shadow-gray-100 focus:shadow-sm hover:shadow-gray-100 hover:shadow-sm text-md w-full"
               placeholder="Enter your task"
             />
-            {isSubmitted && errors.task && <span className='pl-1 text-sm text-red-600'>{errors.task}</span>}
+            {isSubmitted && errors.task && (
+              <span className="pl-1 text-sm text-red-600">{errors.task}</span>
+            )}
           </div>
           <div className="flex flex-col">
-            <label htmlFor="dueDate" className="block text-gray-500">Due Date:</label>
+            <label htmlFor="dueDate" className="block text-gray-500">
+              Due Date:
+            </label>
             <input
               type="datetime-local"
               name="dueDate"
               value={form.dueDate}
               onChange={handleChange}
-              className='border rounded-md p-2 focus:outline-none focus:shadow-gray-100 focus:shadow-sm hover:shadow-gray-100 hover:shadow-sm text-md w-full'
+              className="border rounded-md p-2 focus:outline-none focus:shadow-gray-100 focus:shadow-sm hover:shadow-gray-100 hover:shadow-sm text-md w-full"
             />
-            {isSubmitted && errors.dueDate && <span className='pl-1 text-sm text-red-600'>{errors.dueDate}</span>}
+            {isSubmitted && errors.dueDate && (
+              <span className="pl-1 text-sm text-red-600">
+                {errors.dueDate}
+              </span>
+            )}
           </div>
           <div className="flex flex-col">
-            <label htmlFor="status" className="block text-gray-500">Status:</label>
-            <div className='relative'>
+            <label htmlFor="status" className="block text-gray-500">
+              Status:
+            </label>
+            <div className="relative">
               <select
                 name="status"
                 value={form.status}
                 onChange={handleChange}
-                className="border rounded-md p-2 pr-10 focus:outline-none focus:shadow-gray-100 focus:shadow-sm hover:shadow-gray-100 hover:shadow-sm text-md w-full appearance-none"
-              >
+                className="border rounded-md p-2 pr-10 focus:outline-none focus:shadow-gray-100 focus:shadow-sm hover:shadow-gray-100 hover:shadow-sm text-md w-full appearance-none">
                 <option value="1">Open</option>
                 <option value="2">In Progress</option>
                 <option value="3">Done</option>
@@ -198,8 +215,17 @@ export default function EditModal({ show, handleClose, handleSubmit, task }) {
           </div>
         </form>
         <div className="flex justify-between border-t-4 sm:pl-4 sm:pr-4 pl-2 pr-2 py-4 mt-3">
-          <button onClick={handleSubmitClick} className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-blue-200 shadow-md hover:shadow-blue-300 hover:shadow-md hover:bg-blue-800">Save Changes</button>
-          <button type="button" onClick={handleClose} className="bg-gray-400 text-white px-4 py-2 rounded-lg shadow-gray-200 shadow-md hover:shadow-gray-300 hover:shadow-md hover:bg-gray-500">Cancel</button>
+          <button
+            onClick={handleSubmitClick}
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-blue-200 shadow-md hover:shadow-blue-300 hover:shadow-md hover:bg-blue-800">
+            Save Changes
+          </button>
+          <button
+            type="button"
+            onClick={handleClose}
+            className="bg-gray-400 text-white px-4 py-2 rounded-lg shadow-gray-200 shadow-md hover:shadow-gray-300 hover:shadow-md hover:bg-gray-500">
+            Cancel
+          </button>
         </div>
       </div>
     </div>
