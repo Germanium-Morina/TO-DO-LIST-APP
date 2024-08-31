@@ -42,13 +42,6 @@ function TaskTable() {
     setItems(updatedItems);
   };
 
-  const handleStatusChange = (index, newStatus) => {
-    const updatedItems = items.map((item, i) => 
-      i === index ? { ...item, status: parseInt(newStatus, 10) } : item
-    );
-    setItems(updatedItems);
-  };
-
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
