@@ -1,47 +1,157 @@
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-container {
+  background-color: transparent;
+  width: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  pointer-events: auto; 
+  transition: background-color 0.2s ease-in-out, width 0.2s ease-in-out;
+}
+
+.custom-scrollbar .bg-scrollbar-track,
+.custom-scrollbar .scrollbar-thumb {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, width 0.2s ease-in-out;
+}
+
+.custom-scrollbar:hover .bg-scrollbar-track,
+.custom-scrollbar:hover .scrollbar-thumb {
+  opacity: 1;
+}
+
+.scrollbar-container:hover,
+.scrollbar-container.scrollbar-active {
+  background-color: #d2d2d3ad;
+  width: 10px;
+
+}
+
+.scrollbar-container:hover .scrollbar-thumb,
+.scrollbar-container.scrollbar-active .scrollbar-thumb {
+  background-color: #777;
+}
+
+.scrollbar-thumb {
+  background-color: #aaaaaaad;
+  width: 60%;
+  position: absolute;
+  top: 0;
+  left: 20%;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out, width 0.2s ease-in-out, left 0.2s ease-in-out;
+  pointer-events: auto;
+}
+
+.scrollbar-thumb:hover,
+.scrollbar-thumb.scrollbar-active {
+  background-color: #555;
+} 
+
+.scrollbar-thumb:hover,
+.scrollbar-container:hover .scrollbar-thumb,
+.scrollbar-active .scrollbar-thumb {
+width: 100%;
+left: 0; 
+background-color: #777777a1;
+}
+
+.custom-scrollbar .scrollbar-thumb,
+.custom-scrollbar .scrollbar-container {
+opacity: 0;
+transition: opacity 0.2s ease-in-out;
+}
+
+.custom-scrollbar:hover .scrollbar-thumb,
+.custom-scrollbar:hover .scrollbar-container,
+.scrollbar-active .scrollbar-thumb,
+.scrollbar-active {
+opacity: 1;
+pointer-events: auto;
+}
+
+.scrollbar-container.scrollbar-active,
+.custom-scrollbar:hover .scrollbar-container {
+opacity: 1;
+}
+.scrollbar-container:hover,
+.scrollbar-active {
+background-color: #e6e7e9;
+opacity: 1;
+}
+
+.scrollbar-container.scrollbar-active {
+background-color: #E5E7EB;
+opacity: 1;
+}
+.scrollbar-overlay {
+position: absolute;
+top: 0;
+right: 0;
+height: 100%;
+width: 10px;
+pointer-events: none; 
+}
+
+.scrollbar-overlay:hover {
+pointer-events: auto; 
+background-color: transparent; 
+}
+
+.horizontal-scrollbar-container {
+  background-color: transparent;
+  height: 10px;
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  pointer-events: auto;
+  transition: background-color 0.2s ease-in-out, height 0.2s ease-in-out;
+  opacity: 0; 
+  visibility: hidden; 
+}
+
+.horizontal-scrollbar-thumb {
+  background-color: #aaaaaaad;
+  height: 60%;
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out, height 0.2s ease-in-out, bottom 0.2s ease-in-out;
+  pointer-events: auto;
+}
+
+@media (max-width: 1000px) {
+  .horizontal-scrollbar-container {
+    opacity: 1; 
+    visibility: visible; 
   }
 
-  .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  .horizontal-scrollbar-thumb {
+    height: 60%;
   }
 
-  .scrollbar-container {
-    background-color: transparent;
-    width: 6px;
+  .horizontal-scrollbar-container:hover,
+  .horizontal-scrollbar-container.scrollbar-active {
+    background-color: #d2d2d3ad;
+    height: 10px;
   }
 
-  .custom-scrollbar .bg-scrollbar-track,
-  .custom-scrollbar .scrollbar-thumb {
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out, width 0.2s ease-in-out;
+  .horizontal-scrollbar-thumb:hover,
+  .horizontal-scrollbar-container:hover .horizontal-scrollbar-thumb,
+  .horizontal-scrollbar-container.scrollbar-active .horizontal-scrollbar-thumb {
+    height: 100%;
+    bottom: 0;
+    background-color: #777777a1;
   }
-
-  .custom-scrollbar:hover .bg-scrollbar-track,
-  .custom-scrollbar:hover .scrollbar-thumb {
-    opacity: 1;
-  }
-
-  .scrollbar-container:hover,
-  .scrollbar-container.scrollbar-active {
-    background-color: #E5E7EB;
-    width: 10px;
-
-  }
-
-  .scrollbar-container:hover .scrollbar-thumb,
-  .scrollbar-container.scrollbar-active .scrollbar-thumb {
-    background-color: #777;
-  }
-
-  .scrollbar-thumb {
-    background-color: #aaa;
-    height: 30px;
-    top: 0;
-  }
-
-  .scrollbar-thumb:hover,
-  .scrollbar-thumb.scrollbar-active {
-    background-color: #555;
-  } 
+}

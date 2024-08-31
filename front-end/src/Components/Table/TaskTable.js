@@ -2,7 +2,8 @@ import { useState, useMemo, useRef } from 'react';
 import { MDBIcon } from "mdb-react-ui-kit";
 import Search from './Search';
 import TableItems from './TableItems';
-import useScrollbar from './useScrollbar';
+import useVerticalScrollbar from '../Scrollbars/useVerticalScrollbar';
+import useHorizontalScrollbar from '../Scrollbars/useHorizontalScrollbar';
 import "./style.css"
 import AddModal from '../Modals/AddModal'
 function TaskTable() {
@@ -43,11 +44,13 @@ function TaskTable() {
     items.push(newTask); 
     console.log('Task added:', newTask);
   };
+  useVerticalScrollbar(scrollRef);
+  useHorizontalScrollbar(scrollRef);
 
   return (
     <div className='w-full h-full flex justify-center items-center mobile:pr-7 mobile:pl-7 pr-3 pl-3'>
       <div className='bg-white w-full rounded-lg shadow-gray-200 shadow-lg overflow-hidden'>
-        <div className='flex flex-row w-full justify-between border-b-4 pb-3 items-center pt-4 pr-4 pl-4'>
+        <div className='flex flex-row w-full justify-between border-b-4 pb-3 items-center pt-4 md:pr-4 md:pl-4 pr-3 pl-3'>
           <div className='flex flex-row gap-2 items-baseline w-full'>
             <MDBIcon fas icon="tasks" size='lg' />
             <h1 className='text-xl m-0 font-medium'>Task List</h1>
@@ -62,8 +65,8 @@ function TaskTable() {
           </div>
         </div>
         <div className="relative overflow-hidden custom-scrollbar pl-4 pr-4 pt-5">
-          <div ref={scrollRef} className="max-h-[calc(85vh-250px)] overflow-y-scroll relative hide-scrollbar">
-            <div className="flex mb-3 border-b-2">
+          <div ref={scrollRef} className="max-h-[calc(85vh-250px)] overflow-y-scroll overflow-x-scroll relative hide-scrollbar">
+            <div className="flex mb-3 border-b-2 min-w-[1000px]">
               <ul className="flex w-full text-lg pb-3 m-0 p-0">
                 <li className="flex-1 text-center">No.</li>
                 <li className="flex-3 text-left">Task</li>
@@ -75,8 +78,14 @@ function TaskTable() {
             <TableItems items={items} searchQuery={searchQuery} setIsTyping={setIsTyping} />
           </div>
 
-          <div className="absolute right-[2px] top-0 h-full w-[8px] transition-all duration-200 ease-in-out z-10 scrollbar-container">
+          {/* Vertical scrollbar */}
+          <div className="absolute right-0 top-0 h-full transition-all duration-200 ease-in-out z-10 scrollbar-container">
             <div className="scrollbar-thumb absolute right-0 h-full w-full transition-all duration-200 rounded-lg ease-in-out"></div>
+          </div>
+
+          {/* Horizontal scrollbar */}
+          <div className="absolute bottom-2 left-0 w-full transition-all duration-200 ease-in-out z-10 horizontal-scrollbar-container">
+            <div className="horizontal-scrollbar-thumb absolute w-full h-full transition-all duration-200 rounded-lg ease-in-out"></div>
           </div>
         </div>
         <div className="flex flex-row justify-end pt-4 pb-4 pr-5 pl-5 border-t-4">

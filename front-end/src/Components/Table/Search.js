@@ -1,7 +1,7 @@
 import { MDBIcon } from 'mdb-react-ui-kit';
 export default function Search({ searchQuery, handleInputChange, clearSearch, isTyping }) {
   return (
-    <div className='flex flex-row gap-3 justify-start items-center relative w-2/4'>
+    <div className='flex flex-row gap-3 justify-start items-center relative md:w-1/2 sm:w-4/5 w-full'>
     <input
       type="text"
       name="search"

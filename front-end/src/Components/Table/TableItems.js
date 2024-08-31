@@ -19,7 +19,7 @@ function TableItems({ items, searchQuery, setIsTyping }) {
   }, [searchQuery, items, setIsTyping]);
 
   return (
-    <div className='flex flex-col pb-4 max-h-[calc(85vh-300px)]'>
+    <div className='flex flex-col pb-4 max-h-[calc(85vh-300px)] min-w-[1000px]'>
       <ul className='flex flex-col m-0 p-0'>
   {filteredItems.map((item, index) => (
     <li

@@ -57,7 +57,6 @@ function Login() {
 
     if (Object.keys(validationErrors).length === 0) {
       console.log('Form submitted:', form);
-      // Redirect to another page after successful submission
       navigate('/');
     }
   };
