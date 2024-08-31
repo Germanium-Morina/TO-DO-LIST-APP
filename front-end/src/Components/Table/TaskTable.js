@@ -7,6 +7,7 @@ import useHorizontalScrollbar from '../Scrollbars/useHorizontalScrollbar';
 import "./style.css"
 import AddModal from '../Modals/AddModal'
 import EditModal from '../Modals/EditModal';
+import DeleteModal from '../Modals/DeleteModal';
 function TaskTable() {
   const [items, setItems] = useState([
     { task: 'Home Work', status: 2, dueDate: '05/06/2024, 01:00'},
@@ -25,6 +26,7 @@ function TaskTable() {
   const [isTyping, setIsTyping] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [currentTask, setCurrentTask] = useState(null);
   const scrollRef = useRef(null);
 
@@ -62,6 +64,17 @@ function TaskTable() {
   const updateTask = (updatedTask) => {
     setItems(items.map(item => item === currentTask ? updatedTask : item));
     closeEditModal();
+  };
+
+  const openDeleteModal = (task) => {
+    setCurrentTask(task);
+    setShowDeleteModal(true);
+  };
+  const closeDeleteModal = () => setShowDeleteModal(false);
+
+  const deleteTask = () => {
+    setItems(items.filter(item => item !== currentTask));
+    closeDeleteModal();
   };
   useVerticalScrollbar(scrollRef);
   useHorizontalScrollbar(scrollRef);
@@ -102,6 +115,7 @@ function TaskTable() {
               setIsTyping={setIsTyping}
               openEditModal={openEditModal}
               handleStatusChange={handleStatusChange}
+              openDeleteModal={openDeleteModal}
             />
           </div>
 
@@ -135,7 +149,9 @@ function TaskTable() {
         handleSubmit={updateTask}
         task={currentTask}
       />
+      <DeleteModal show={showDeleteModal} handleClose={closeDeleteModal} handleDelete={deleteTask} task={currentTask} />
     </div>
+     
   );
 }
 
