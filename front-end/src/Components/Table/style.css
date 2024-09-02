@@ -18,7 +18,18 @@
   height: 100%;
   pointer-events: none;
   opacity: 0;
-  transition: background-color 0.2s ease-in-out, width 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+  visibility: hidden;
+}
+
+/* Show scrollbar when the content overflows and the container, thumb is hovered, or the scrollbar is being dragged */
+.show-scrollbar.is-hovered .scrollbar-container,
+.show-scrollbar.is-thumb-hovered .scrollbar-container,
+.show-scrollbar.is-dragging .scrollbar-container {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out; /* Faster transition when appearing */
 }
 
 /* Vertical scrollbar thumb */
@@ -29,8 +40,34 @@
   top: 0;
   left: 20%;
   border-radius: 4px;
-  transition: background-color 0.2s ease-in-out, width 0.2s ease-in-out, left 0.2s ease-in-out;
+  transition: background-color 0.5s ease-in-out, width 0.4s ease-in-out, left 0.4s ease-in-out;
   pointer-events: auto;
+}
+
+/* Enhance the thumb visibility when hovered or dragged */
+.scrollbar-container:hover .scrollbar-thumb,
+.scrollbar-thumb:hover,
+.scrollbar-thumb.dragging {
+  background-color: #636363b9;
+  width: 100%;
+  left: 0;
+  cursor: grabbing;
+}
+
+/* Separate handling for when the scrollbar container or thumb is hovered */
+.show-scrollbar .scrollbar-container:hover {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Keep the scrollbar visible and active during dragging */
+.show-scrollbar.is-dragging .scrollbar-container,
+.scrollbar-thumb.dragging {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  background-color: #d2d2d3ad;
 }
 
 /* Hovering or dragging the scrollbar */
@@ -64,23 +101,24 @@
   height: 10px;
   position: absolute;
   bottom: 2px;
-  left: 0;
+  left: 10%;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  transition: background-color 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
   /* The width will be calculated dynamically to not overlap with the vertical scrollbar */
+   width: calc(100% - 10px);
 }
 
 /* Horizontal scrollbar thumb */
 .horizontal-scrollbar-thumb {
-  background-color: #aaaaaaad; /* Default thumb color */
+  background-color: #aaaaaaad;
   height: 60%;
   position: absolute;
   bottom: 20%;
   left: 0;
   border-radius: 4px;
-  transition: background-color 0.2s ease-in-out, height 0.2s ease-in-out, bottom 0.2s ease-in-out;
+  transition: background-color 0.5s ease-in-out, height 0.2s ease-in-out, bottom 0.2s ease-in-out;
   pointer-events: auto;
 }
 

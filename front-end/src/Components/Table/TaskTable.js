@@ -93,7 +93,8 @@ function TaskTable() {
     { label: "Done", status: 3 },
     { label: "Closed", status: 4 },
   ];
-  useVerticalScrollbar(scrollRef);
+  const { showScrollbar, isHovered, isThumbHovered, isDragging } =
+    useVerticalScrollbar(scrollRef);
   useHorizontalScrollbar(scrollRef);
 
   return (
@@ -113,7 +114,12 @@ function TaskTable() {
             />
           </div>
         </div>
-        <div className="relative overflow-hidden custom-scrollbar flex flex-row">
+        <div
+          className={`relative overflow-hidden custom-scrollbar flex flex-row ${
+            showScrollbar ? "show-scrollbar" : ""
+          } ${isHovered ? "is-hovered" : ""} ${
+            isThumbHovered ? "is-thumb-hovered" : ""
+          } ${isDragging ? "is-dragging" : ""}`}>
           {/* Status Navbar */}
           <div className="w-[10%] border-r-2 flex-none flex flex-col px-2 justify-center items-center">
             {statusTabs.map((tab, index) => (
@@ -158,7 +164,7 @@ function TaskTable() {
           </div>
 
           {/* Horizontal scrollbar */}
-          <div className="absolute bottom-2 left-0 w-full transition-all duration-200 ease-in-out z-10 horizontal-scrollbar-container">
+          <div className="absolute bottom-2 w-full transition-all duration-200 ease-in-out z-10 horizontal-scrollbar-container">
             <div className="horizontal-scrollbar-thumb absolute w-full h-full transition-all duration-200 rounded-lg ease-in-out"></div>
           </div>
         </div>
