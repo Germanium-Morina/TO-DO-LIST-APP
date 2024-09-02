@@ -121,7 +121,7 @@ function TaskTable() {
             isThumbHovered ? "is-thumb-hovered" : ""
           } ${isDragging ? "is-dragging" : ""}`}>
           {/* Status Navbar */}
-          <div className="w-[10%] border-r-2 flex-none flex flex-col px-2 justify-center items-center">
+          <div className="md:w-32 w-24 border-r-2 flex-none flex flex-col px-2 justify-center items-center">
             {statusTabs.map((tab, index) => (
               <button
                 key={tab.status}
@@ -138,7 +138,7 @@ function TaskTable() {
 
           <div
             ref={scrollRef}
-            className="max-h-[calc(85vh-250px)] overflow-y-scroll overflow-x-scroll relative hide-scrollbar w-[90%] pl-4 pr-4">
+            className="max-h-[calc(85vh-250px)] overflow-y-scroll overflow-x-scroll relative hide-scrollbar w-full pl-4 pr-4">
             <div className="flex border-b-2 min-w-[1000px] py-3">
               <ul className="flex w-full text-lg m-0 p-0">
                 <li className="flex-1 text-center">No.</li>
@@ -164,7 +164,7 @@ function TaskTable() {
           </div>
 
           {/* Horizontal scrollbar */}
-          <div className="absolute bottom-2 w-full transition-all duration-200 ease-in-out z-10 horizontal-scrollbar-container">
+          <div className="absolute bottom-2 w-full transition-all duration-200 ease-in-out z-10 horizontal-scrollbar-container md:left-32 left-24">
             <div className="horizontal-scrollbar-thumb absolute w-full h-full transition-all duration-200 rounded-lg ease-in-out"></div>
           </div>
         </div>
