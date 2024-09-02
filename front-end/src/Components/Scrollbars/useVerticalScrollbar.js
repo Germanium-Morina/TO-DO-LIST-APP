@@ -46,6 +46,19 @@ function useVerticalScrollbar(ref) {
       thumb.style.top = `${thumbTop}px`;
     };
 
+    const handleTrackClick = (event) => {
+      const rect = track.getBoundingClientRect();
+      const clickY = event.clientY - rect.top;
+      const thumbHeight = thumb.offsetHeight;
+
+      const newScrollTop =
+        ((clickY - thumbHeight / 2) / (track.offsetHeight - thumbHeight)) *
+        (element.scrollHeight - element.clientHeight);
+
+      element.scrollTop = newScrollTop;
+      handleScroll();
+    };
+
     const handleThumbMouseDown = (event) => {
       setIsDragging(true);
       track.classList.add("scrollbar-active");
@@ -96,6 +109,7 @@ function useVerticalScrollbar(ref) {
     };
 
     thumb.addEventListener("mousedown", handleThumbMouseDown);
+    track.addEventListener("click", handleTrackClick);
     element.addEventListener("scroll", handleScroll);
     element.addEventListener("mouseenter", handleMouseEnter);
     element.addEventListener("mouseleave", handleMouseLeave);
@@ -108,6 +122,7 @@ function useVerticalScrollbar(ref) {
     // Cleanup
     return () => {
       thumb.removeEventListener("mousedown", handleThumbMouseDown);
+      track.removeEventListener("click", handleTrackClick);
       element.removeEventListener("scroll", handleScroll);
       element.removeEventListener("mouseenter", handleMouseEnter);
       element.removeEventListener("mouseleave", handleMouseLeave);

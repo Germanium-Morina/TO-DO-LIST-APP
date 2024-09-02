@@ -47,6 +47,19 @@ function useHorizontalScrollbar(ref) {
       }
     };
 
+    const handleTrackClick = (event) => {
+      const rect = track.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const thumbWidth = thumb.offsetWidth;
+
+      const newScrollLeft =
+        ((clickX - thumbWidth / 2) / (track.offsetWidth - thumbWidth)) *
+        (element.scrollWidth - element.clientWidth);
+
+      element.scrollLeft = newScrollLeft;
+      handleScroll();
+    };
+
     const handleThumbMouseDown = (event) => {
       setIsDragging(true);
       track.classList.add("scrollbar-active");
@@ -102,6 +115,7 @@ function useHorizontalScrollbar(ref) {
     };
 
     thumb.addEventListener("mousedown", handleThumbMouseDown);
+    track.addEventListener("click", handleTrackClick);
     element.addEventListener("scroll", handleScroll);
     element.parentElement.addEventListener("mouseenter", handleMouseEnter);
     element.parentElement.addEventListener("mouseleave", handleMouseLeave);
@@ -110,6 +124,7 @@ function useHorizontalScrollbar(ref) {
 
     return () => {
       thumb.removeEventListener("mousedown", handleThumbMouseDown);
+      track.removeEventListener("click", handleTrackClick);
       element.removeEventListener("scroll", handleScroll);
       element.parentElement.removeEventListener("mouseenter", handleMouseEnter);
       element.parentElement.removeEventListener("mouseleave", handleMouseLeave);
