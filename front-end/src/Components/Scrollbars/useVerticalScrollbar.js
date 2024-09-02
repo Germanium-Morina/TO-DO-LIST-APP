@@ -26,7 +26,7 @@ function useVerticalScrollbar(ref) {
         const thumbHeight = Math.max(
           (clientHeight / scrollHeight) * clientHeight,
           30
-        ); // Minimum thumb height 30px
+        );
         thumb.style.height = `${thumbHeight}px`;
       } else {
         setShowScrollbar(false);
@@ -61,7 +61,7 @@ function useVerticalScrollbar(ref) {
         element.scrollTop =
           startScrollTop +
           scrollPercentage * (element.scrollHeight - element.clientHeight);
-        handleScroll(); // Update thumb position
+        handleScroll();
       };
 
       const handleMouseUp = () => {
@@ -78,10 +78,9 @@ function useVerticalScrollbar(ref) {
       event.preventDefault();
     };
 
-    // Handle hover events
     const handleMouseEnter = () => {
       setIsHovered(true);
-      updateScrollbar(); // Ensure the scrollbar is updated on hover
+      updateScrollbar();
     };
 
     const handleMouseLeave = () => {
@@ -96,7 +95,6 @@ function useVerticalScrollbar(ref) {
       setIsThumbHovered(false);
     };
 
-    // Attach event listeners
     thumb.addEventListener("mousedown", handleThumbMouseDown);
     element.addEventListener("scroll", handleScroll);
     element.addEventListener("mouseenter", handleMouseEnter);

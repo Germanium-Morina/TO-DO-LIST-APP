@@ -13,7 +13,7 @@ function useHorizontalScrollbar(ref) {
     const thumb = element.parentElement.querySelector(
       ".horizontal-scrollbar-thumb"
     );
-    const verticalScrollbarWidth = 10; // The width of the vertical scrollbar
+    const verticalScrollbarWidth = 10;
 
     if (!track || !thumb) {
       console.error("Horizontal scrollbar elements not found");
@@ -23,14 +23,12 @@ function useHorizontalScrollbar(ref) {
     const handleScroll = () => {
       const { scrollWidth, clientWidth, scrollLeft } = element;
 
-      // Adjust the width of the horizontal scrollbar container to not overlap the vertical scrollbar
       track.style.width = `${clientWidth - verticalScrollbarWidth}px`;
 
-      // Calculate thumb width and position
       const thumbWidth = Math.max(
         (clientWidth / scrollWidth) * track.offsetWidth,
         30
-      ); // Minimum thumb width 30px
+      );
       thumb.style.width = `${thumbWidth}px`;
 
       const thumbLeft =
@@ -38,7 +36,6 @@ function useHorizontalScrollbar(ref) {
         (track.offsetWidth - thumbWidth);
       thumb.style.left = `${thumbLeft}px`;
 
-      // Show scrollbar if content overflows
       if (scrollWidth > clientWidth) {
         track.style.opacity = "1";
         track.style.visibility = "visible";
@@ -65,7 +62,7 @@ function useHorizontalScrollbar(ref) {
         element.scrollLeft =
           startScrollLeft +
           scrollPercentage * (element.scrollWidth - element.clientWidth);
-        handleScroll(); // Update thumb position
+        handleScroll();
       };
 
       const handleMouseUp = () => {
@@ -75,7 +72,6 @@ function useHorizontalScrollbar(ref) {
         document.removeEventListener("mousemove", handleMouseMove);
         document.removeEventListener("mouseup", handleMouseUp);
 
-        // Hide scrollbar if not hovering after drag ends
         if (!element.matches(":hover")) {
           track.style.opacity = "0";
           track.style.visibility = "hidden";
@@ -110,10 +106,8 @@ function useHorizontalScrollbar(ref) {
     element.parentElement.addEventListener("mouseenter", handleMouseEnter);
     element.parentElement.addEventListener("mouseleave", handleMouseLeave);
 
-    // Initialize scrollbar
     handleScroll();
 
-    // Cleanup
     return () => {
       thumb.removeEventListener("mousedown", handleThumbMouseDown);
       element.removeEventListener("scroll", handleScroll);

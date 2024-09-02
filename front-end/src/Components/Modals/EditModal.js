@@ -7,33 +7,28 @@ export default function EditModal({ show, handleClose, handleSubmit, task }) {
   const parseDueDate = (dueDate) => {
     if (!dueDate) return "";
 
-    // Split the dueDate string into date and time components
     const [date, time] = dueDate.split(", ");
 
-    if (!date || !time) return ""; // Early return if date or time is missing
+    if (!date || !time) return "";
 
-    // Convert the date from MM/DD/YYYY to YYYY-MM-DD
     const [month, day, year] = date.split("/");
-    if (!month || !day || !year) return ""; // Early return if date components are missing
+    if (!month || !day || !year) return "";
 
     const formattedDate = `${year}-${month.padStart(2, "0")}-${day.padStart(
       2,
       "0"
     )}`;
 
-    // Combine the date and time for the datetime-local input
     return `${formattedDate}T${time}`;
   };
 
   const formatDueDateForItemList = (dueDate) => {
     if (!dueDate) return "";
 
-    // Split the dueDate into date and time
     const [date, time] = dueDate.split("T");
 
     if (!date || !time) return "";
 
-    // Convert from YYYY-MM-DD to MM/DD/YYYY
     const [year, month, day] = date.split("-");
     const formattedDate = `${month}/${day}/${year}`;
 
@@ -108,7 +103,7 @@ export default function EditModal({ show, handleClose, handleSubmit, task }) {
     setIsSubmitted(true);
 
     if (Object.keys(validationErrors).length === 0) {
-      // Reformat the date before submitting
+
       const formattedForm = {
         ...form,
         dueDate: formatDueDateForItemList(form.dueDate),

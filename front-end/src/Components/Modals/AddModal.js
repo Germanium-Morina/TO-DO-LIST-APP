@@ -5,7 +5,7 @@ export default function AddModal({ show, handleClose, handleSubmit }) {
   const [form, setForm] = useState({
     task: "",
     dueDate: "",
-    status: "1", // Default to 'Open'
+    status: "1",
   });
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -81,13 +81,12 @@ export default function AddModal({ show, handleClose, handleSubmit }) {
 
   const handleSubmitClick = () => {
     if (formRef.current) {
-      formRef.current.requestSubmit(); // Programmatically submit the form
+      formRef.current.requestSubmit();
     }
   };
 
   useEffect(() => {
     if (isSubmitted) {
-      // Trigger validation when `isSubmitted` changes
       setErrors(validateForm());
     }
   }, [form, isSubmitted, validateForm]);

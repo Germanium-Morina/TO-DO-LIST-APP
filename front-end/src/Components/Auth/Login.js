@@ -17,7 +17,6 @@ function Login() {
       [name]: value,
     });
 
-    // Validate the field being typed in
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: validateField(name, value),

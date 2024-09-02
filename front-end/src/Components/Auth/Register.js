@@ -24,7 +24,6 @@ function Register() {
       [name]: value,
     });
 
-    // Validate the field being typed in
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: validateField(name, value),
@@ -81,7 +80,6 @@ function Register() {
 
     if (Object.keys(validationErrors).length === 0) {
       console.log("Form submitted:", form);
-      // Redirect to another page after successful submission
       navigate("/");
     }
   };

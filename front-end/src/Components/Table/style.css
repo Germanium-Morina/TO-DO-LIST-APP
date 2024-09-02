@@ -1,16 +1,16 @@
-/* Hide default scrollbar */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+/* Hides the scrollbar in WebKit-based browsers (e.g., Chrome, Safari) */
 
 .hide-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
 }
+/* Hides the scrollbar in Internet Explorer and Firefox */
 
-/* Vertical scrollbar container */
 .scrollbar-container {
-  background-color: transparent; /* Default container color */
+  background-color: transparent;
   width: 10px;
   position: absolute;
   top: 0;
@@ -21,20 +21,20 @@
   transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
   visibility: hidden;
 }
+/* Styles the vertical scrollbar container, making it initially hidden and non-interactive */
 
-/* Show scrollbar when the content overflows and the container, thumb is hovered, or the scrollbar is being dragged */
 .show-scrollbar.is-hovered .scrollbar-container,
 .show-scrollbar.is-thumb-hovered .scrollbar-container,
 .show-scrollbar.is-dragging .scrollbar-container {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out; /* Faster transition when appearing */
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
 }
+/* Makes the scrollbar visible and interactive when hovered, thumb-hovered, or dragging */
 
-/* Vertical scrollbar thumb */
 .scrollbar-thumb {
-  background-color: #aaaaaaad; /* Default thumb color */
+  background-color: #aaaaaaad;
   width: 60%;
   position: absolute;
   top: 0;
@@ -43,8 +43,8 @@
   transition: background-color 0.5s ease-in-out, width 0.4s ease-in-out, left 0.4s ease-in-out;
   pointer-events: auto;
 }
+/* Styles the vertical scrollbar thumb, with a semi-transparent color and smooth transitions */
 
-/* Enhance the thumb visibility when hovered or dragged */
 .scrollbar-container:hover .scrollbar-thumb,
 .scrollbar-thumb:hover,
 .scrollbar-thumb.dragging {
@@ -53,15 +53,15 @@
   left: 0;
   cursor: grabbing;
 }
+/* Changes the scrollbar thumb appearance when hovered or dragged, expanding it to full width */
 
-/* Separate handling for when the scrollbar container or thumb is hovered */
 .show-scrollbar .scrollbar-container:hover {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
+/* Ensures the scrollbar container is fully visible and interactive when hovered in a .show-scrollbar context */
 
-/* Keep the scrollbar visible and active during dragging */
 .show-scrollbar.is-dragging .scrollbar-container,
 .scrollbar-thumb.dragging {
   opacity: 1;
@@ -69,35 +69,36 @@
   pointer-events: auto;
   background-color: #d2d2d3ad;
 }
+/* Keeps the scrollbar visible and changes its color while dragging */
 
-/* Hovering or dragging the scrollbar */
 .scrollbar-container:hover,
 .scrollbar-container.scrollbar-active,
 .scrollbar-thumb.dragging {
-  background-color: #d2d2d3ad; /* Active container color */
+  background-color: #d2d2d3ad;
   opacity: 1;
   pointer-events: auto;
 }
+/* Makes the scrollbar container visible and interactive when active or hovered, changing its background color */
 
 .scrollbar-container:hover .scrollbar-thumb,
 .scrollbar-container.scrollbar-active .scrollbar-thumb,
 .scrollbar-thumb.dragging {
-  background-color: #636363b9; /* Active thumb color */
+  background-color: #636363b9;
   width: 100%;
   left: 0;
   cursor: grabbing;
 }
+/* Expands and recolors the scrollbar thumb when hovered or dragging */
 
-/* Show vertical scrollbar when hovering or dragging */
 .custom-scrollbar:hover .scrollbar-container,
 .scrollbar-container.scrollbar-active {
   opacity: 1;
   pointer-events: auto;
 }
+/* Makes the scrollbar container visible and interactive when the custom scrollbar is hovered or active */
 
-/* Horizontal scrollbar container */
 .horizontal-scrollbar-container {
-  background-color: transparent; /* Default container color */
+  background-color: transparent;
   height: 10px;
   position: absolute;
   bottom: 2px;
@@ -106,11 +107,10 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
-  /* The width will be calculated dynamically to not overlap with the vertical scrollbar */
-   width: calc(100% - 10px);
+  width: calc(100% - 10px);
 }
+/* Styles the horizontal scrollbar container, making it initially hidden and non-interactive */
 
-/* Horizontal scrollbar thumb */
 .horizontal-scrollbar-thumb {
   background-color: #aaaaaaad;
   height: 60%;
@@ -121,27 +121,28 @@
   transition: background-color 0.5s ease-in-out, height 0.2s ease-in-out, bottom 0.2s ease-in-out;
   pointer-events: auto;
 }
+/* Styles the horizontal scrollbar thumb with smooth transitions and semi-transparent color */
 
-/* Hovering or dragging the scrollbar */
 .horizontal-scrollbar-container:hover,
 .horizontal-scrollbar-container.scrollbar-active,
 .horizontal-scrollbar-thumb.dragging {
-  background-color: #d2d2d3ad; /* Active container color */
+  background-color: #d2d2d3ad;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
+/* Makes the horizontal scrollbar visible and interactive when hovered, active, or dragging */
 
 .horizontal-scrollbar-container:hover .horizontal-scrollbar-thumb,
 .horizontal-scrollbar-container.scrollbar-active .horizontal-scrollbar-thumb,
 .horizontal-scrollbar-thumb.dragging {
-  background-color: #636363b9; /* Active thumb color */
+  background-color: #636363b9;
   height: 100%;
   bottom: 0;
   cursor: grabbing;
 }
+/* Expands and recolors the horizontal scrollbar thumb when hovered or dragging */
 
-/* Adjustments for responsiveness */
 @media (max-width: 1000px) {
   .horizontal-scrollbar-container {
     opacity: 1;
@@ -166,3 +167,4 @@
     background-color: #636363b9;
   }
 }
+/* Media query to adjust the horizontal scrollbar appearance for screens with a maximum width of 1000px, ensuring it remains visible and interactive */

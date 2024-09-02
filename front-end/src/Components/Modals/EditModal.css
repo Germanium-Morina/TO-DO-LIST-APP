@@ -1,4 +1,4 @@
-/* Add custom styling as needed */
+
 .select-container {
   position: relative;
 }
@@ -12,8 +12,8 @@
 
 .select-container .icon-container {
   position: absolute;
-  right: 0.75rem; /* Adjust to position the icon */
+  right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
-  pointer-events: none; /* Ensures the icon doesn’t block clicks */
+  pointer-events: none;
 }

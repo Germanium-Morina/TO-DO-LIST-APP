@@ -41,7 +41,7 @@ function TableItems({
       <ul className="flex flex-col m-0 p-0">
         {filteredItems.map((item, index) => (
           <li
-            key={item.id} // Assuming each task has a unique 'id'
+            key={item.id}
             className="flex flex-row items-center justify-between text-gray-600 border-b-2 last:border-b-0">
             <span className="flex-1 text-center pt-3 pb-3">{index + 1}</span>
             <span className="flex-3 text-left pt-3 pb-3">{item.task}</span>
@@ -79,7 +79,7 @@ function TableItems({
 TableItems.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired, // Ensure each item has a unique 'id'
+      id: PropTypes.string.isRequired,
       task: PropTypes.string.isRequired,
       status: PropTypes.number.isRequired,
       dueDate: PropTypes.string.isRequired,
